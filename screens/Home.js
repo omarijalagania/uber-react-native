@@ -1,11 +1,11 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { YALP_KEY } from "@env";
-import Categories from "../components/Categories/Categories";
-import HeaderTabs from "../components/Header/HeaderTabs";
-import RestaurantItem from "../components/Restaurant/RestaurantItem";
-import Searchbar from "../components/Search/Searchbar";
-
+import Categories from "../components/home/Categories/Categories";
+import HeaderTabs from "../components/home/Header/HeaderTabs";
+import RestaurantItem from "../components/home/Restaurant/RestaurantItem";
+import Searchbar from "../components/home/Search/Searchbar";
+import BottomTabs from "../components/home/BottomTabs/BottomTabs";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [city, setCity] = useState("georgia");
@@ -46,6 +46,8 @@ const Home = () => {
         <Categories />
         <RestaurantItem restaurantsData={restaurants} />
       </ScrollView>
+
+      <BottomTabs />
     </SafeAreaView>
   );
 };
