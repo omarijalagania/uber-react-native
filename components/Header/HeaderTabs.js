@@ -5,7 +5,7 @@ import HeaderButton from "./HeaderButton";
 const HeaderTabs = () => {
   const [activeTab, setActiveTab] = useState("Delivery");
   return (
-    <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 50 }}>
+    <View style={{ flexDirection: "row", alignSelf: "center", marginTop: 30 }}>
       <HeaderButton
         text="Delivery"
         activeTab={activeTab}

@@ -16,7 +16,7 @@ const HeaderButton = ({ text, activeTab, setActiveTab }) => {
         style={{
           color: activeTab === text ? "white" : "black",
           fontSize: 15,
-          fontWeight: "900",
+          fontWeight: "bold",
         }}
       >
         {text}
