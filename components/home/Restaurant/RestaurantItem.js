@@ -7,6 +7,7 @@ const RestaurantItem = ({ restaurantsData, navigation }) => {
     <>
       {restaurantsData.map((restaurant) => (
         <TouchableOpacity
+          key={restaurant.id}
           activeOpacity={1}
           style={{ marginBottom: 30 }}
           onPress={() =>
