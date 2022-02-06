@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
+import { Divider } from "react-native-elements";
 
 const About = () => {
   const image =
@@ -7,16 +8,11 @@ const About = () => {
   const title = "Georginan Food";
   const description = "Good and healthy food * $$ * 4 * (+3212)";
   return (
-    <View
-      style={{
-        borderBottomWidth: 1,
-        borderBottomColor: "#e5e5e5",
-        paddingBottom: 10,
-      }}
-    >
+    <View>
       <RestaurantImage image={image} />
       <RestaurantTitle title={title} />
       <RestaurantDescription description={description} />
+      <Divider width={1} style={{ paddingBottom: 10 }} />
     </View>
   );
 };

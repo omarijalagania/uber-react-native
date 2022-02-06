@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useState } from "react";
 import HeaderButton from "./HeaderButton";
+import { Divider } from "react-native-elements";
 
 const HeaderTabs = ({ activeTab, setActiveTab }) => {
   return (
@@ -17,6 +18,7 @@ const HeaderTabs = ({ activeTab, setActiveTab }) => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
+      <Divider width={1} />
     </View>
   );
 };
