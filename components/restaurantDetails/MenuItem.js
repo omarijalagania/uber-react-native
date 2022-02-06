@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider } from "react-native-elements";
@@ -50,12 +50,15 @@ const goods = [
 
 const MenuItem = ({ restaurauntName }) => {
   const dispatch = useDispatch();
-
   //item select function
-  const selectItem = (item) => {
+  const selectItem = (item, checkboxValue) => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: { ...item, restaurauntName: restaurauntName },
+      payload: {
+        ...item,
+        restaurauntName: restaurauntName,
+        checkboxValue: checkboxValue,
+      },
     });
   };
 
@@ -74,7 +77,7 @@ const MenuItem = ({ restaurauntName }) => {
             <BouncyCheckbox
               iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               fillColor="green"
-              onPress={() => selectItem(item)}
+              onPress={(checkboxValue) => selectItem(item, checkboxValue)}
             />
             <FoodInfo
               title={item.title}
