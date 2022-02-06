@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 const goods = [
   {
     title: "Tendori Chiken",
-    price: "$10.00",
+    price: "$12.00",
     description: "Tendori Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
@@ -18,31 +18,31 @@ const goods = [
   },
   {
     title: "Sala Chiken",
-    price: "$14.00",
+    price: "$11.20",
     description: "Salad Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
     title: "Sala Chiken",
-    price: "$14.00",
+    price: "$13.50",
     description: "Salad Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
     title: "Sala Chiken",
-    price: "$14.00",
+    price: "$7.30",
     description: "Salad Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
     title: "Sala Chiken",
-    price: "$14.00",
+    price: "$16.3",
     description: "Salad Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
     title: "Sala Chiken",
-    price: "$14.00",
+    price: "$22.02",
     description: "Salad Chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
