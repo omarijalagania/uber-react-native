@@ -2,15 +2,21 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Divider } from "react-native-elements";
 
-const About = () => {
-  const image =
-    "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg";
-  const title = "Georginan Food";
-  const description = "Good and healthy food * $$ * 4 * (+3212)";
+const About = ({ route }) => {
+  const { name, image, price, reviews, rating, categories } = route.params;
+
+  const formatedCategories = categories
+    .map((category) => category.title)
+    .join(" . ");
+
+  const description = `${formatedCategories} ${price ? " .  " + price : ""} ${
+    reviews ? " .  " + reviews : ""
+  } ${rating ? " .  " + rating : ""}`;
+
   return (
     <View>
       <RestaurantImage image={image} />
-      <RestaurantTitle title={title} />
+      <RestaurantTitle title={name} />
       <RestaurantDescription description={description} />
       <Divider width={1} style={{ paddingBottom: 10 }} />
     </View>

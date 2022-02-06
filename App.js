@@ -1,5 +1,5 @@
 import Home from "./screens/Home";
-import RestaurantDetails from "./screens/RestaurantDetails";
+import RootNavigation from "./navigation/navigation";
 export default function App() {
-  return <RestaurantDetails />;
+  return <RootNavigation />;
 }

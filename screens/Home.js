@@ -6,7 +6,7 @@ import HeaderTabs from "../components/home/Header/HeaderTabs";
 import RestaurantItem from "../components/home/Restaurant/RestaurantItem";
 import Searchbar from "../components/home/Search/Searchbar";
 import BottomTabs from "../components/home/BottomTabs/BottomTabs";
-const Home = () => {
+const Home = ({ navigation }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [city, setCity] = useState("georgia");
   const [activeTab, setActiveTab] = useState("Delivery");
@@ -44,7 +44,7 @@ const Home = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <RestaurantItem restaurantsData={restaurants} />
+        <RestaurantItem restaurantsData={restaurants} navigation={navigation} />
       </ScrollView>
 
       <BottomTabs />
