@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider } from "react-native-elements";
-
+import { useDispatch } from "react-redux";
 const goods = [
   {
     title: "Tendori Chiken",
@@ -48,7 +48,17 @@ const goods = [
   },
 ];
 
-const MenuItem = () => {
+const MenuItem = ({ restaurauntName }) => {
+  const dispatch = useDispatch();
+
+  //item select function
+  const selectItem = (item) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: { ...item, restaurauntName: restaurauntName },
+    });
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {goods.map((item, index) => (
@@ -64,6 +74,7 @@ const MenuItem = () => {
             <BouncyCheckbox
               iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               fillColor="green"
+              onPress={() => selectItem(item)}
             />
             <FoodInfo
               title={item.title}

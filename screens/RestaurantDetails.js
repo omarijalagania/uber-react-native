@@ -8,7 +8,7 @@ const RestaurantDetails = ({ route, navigation }) => {
   return (
     <View>
       <About route={route} />
-      <MenuItem />
+      <MenuItem restaurauntName={route.params.name} />
       <ViewCart navigation={navigation} restaurauntName={route.params.name} />
     </View>
   );
