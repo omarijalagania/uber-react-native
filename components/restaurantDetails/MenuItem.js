@@ -6,44 +6,50 @@ import { useDispatch } from "react-redux";
 const goods = [
   {
     title: "Tendori Chiken",
-    price: "$12.00",
-    description: "Tendori Chiken",
+    price: "$12.20",
+    description: "Tendori Chiken with rice",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$14.00",
-    description: "Salad Chiken",
+    title: "Salad with Chiken",
+    price: "$14.30",
+    description: "pleasent salad with chiken",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$11.20",
-    description: "Salad Chiken",
+    title: "Vegetables with Fish",
+    price: "$11.23",
+    description: "fresh fish with vegetables",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$13.50",
-    description: "Salad Chiken",
+    title: "Beef",
+    price: "$13.2",
+    description: "beef with potatoes",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$7.30",
-    description: "Salad Chiken",
+    title: "Potatoes with Salad",
+    price: "$12.52",
+    description: "Salad with potatoes",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$16.3",
-    description: "Salad Chiken",
+    title: "rice and ananas",
+    price: "$23.57",
+    description: "fresh ananas with rice",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
   {
-    title: "Sala Chiken",
-    price: "$22.02",
-    description: "Salad Chiken",
+    title: "Potatoes 22 with Salad",
+    price: "$12.52",
+    description: "Salad with potatoes",
+    image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
+  },
+  {
+    title: "rice eee and ananas",
+    price: "$23.53",
+    description: "fresh ananas with rice",
     image: "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
   },
 ];
@@ -65,7 +71,7 @@ const MenuItem = ({ restaurauntName }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {goods.map((item, index) => (
-        <View key={index}>
+        <View key={Math.random(3) * index}>
           <View
             style={{
               flexDirection: "row",

@@ -3,11 +3,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 const ViewCart = ({ navigation, restaurauntName }) => {
   const item = useSelector((state) => state.cartReducer.selectedItems.items);
-  const total = item
+  let total = item
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((a, b) => a + b, 0);
 
-  const totalUSD = total.toLocaleString("en", {
+  let totalUSD = total.toLocaleString("en", {
     style: "currency",
     currency: "USD",
   });
@@ -17,12 +17,11 @@ const ViewCart = ({ navigation, restaurauntName }) => {
       {total ? (
         <View
           style={{
-            flex: 1,
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "row",
             position: "absolute",
-            bottom: "27%",
+            bottom: total.length > 4 ? 20 : "27%",
             zIndex: 999,
           }}
         >
@@ -45,7 +44,7 @@ const ViewCart = ({ navigation, restaurauntName }) => {
                 position: "relative",
               }}
             >
-              <Text style={{ color: "white", fontSize: 20, marginRight: 30 }}>
+              <Text style={{ color: "white", fontSize: 20, marginRight: 40 }}>
                 View Cart
               </Text>
               <Text style={{ color: "white", fontSize: 20 }}>${totalUSD}</Text>
