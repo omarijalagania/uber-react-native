@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OrderItem from "./OrderItem";
 import { useSelector } from "react-redux";
 const ViewCart = ({ navigation }) => {
@@ -8,6 +8,33 @@ const ViewCart = ({ navigation }) => {
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
   );
+
+  const sentToMongoDB = async () => {
+    try {
+      const request = await fetch(
+        "https://restapi-mongo.onrender.com/api/uber/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: items.map((item) => {
+              const obj = {
+                name: item.title,
+                description: item.description,
+                price: item.price,
+              };
+              return obj;
+            }),
+            restaurantName: restaurantName,
+          }),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const modalContent = () => {
     return (
@@ -33,6 +60,7 @@ const ViewCart = ({ navigation }) => {
                 position: "relative",
               }}
               onPress={() => {
+                sentToMongoDB();
                 setModalVisible(false);
               }}
             >

@@ -72,6 +72,8 @@ const MenuItem = ({ restaurauntName }) => {
     (state) => state.cartReducer.selectedItems.items
   );
 
+  console.log(cartItems);
+
   //on items refresh check mark stays on
   const isFoodCart = (food, cartItems) => {
     return Boolean(
