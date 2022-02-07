@@ -1,8 +1,12 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity, Modal } from "react-native";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 const ViewCart = ({ navigation, restaurauntName }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const item = useSelector((state) => state.cartReducer.selectedItems.items);
+
+  //remove dollar sign from price
   let total = item
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((a, b) => a + b, 0);
@@ -21,7 +25,7 @@ const ViewCart = ({ navigation, restaurauntName }) => {
             justifyContent: "center",
             flexDirection: "row",
             position: "absolute",
-            bottom: total.length > 4 ? 20 : "27%",
+            bottom: total.length > 4 ? 30 : "30%",
             zIndex: 999,
           }}
         >
@@ -38,16 +42,16 @@ const ViewCart = ({ navigation, restaurauntName }) => {
                 flexDirection: "row",
                 justifyContent: "flex-end",
                 padding: 15,
-                backgroundColor: "black",
+                backgroundColor: "#ff8f00",
                 borderRadius: 30,
                 width: 300,
                 position: "relative",
               }}
             >
-              <Text style={{ color: "white", fontSize: 20, marginRight: 40 }}>
+              <Text style={{ color: "black", fontSize: 20, marginRight: 40 }}>
                 View Cart
               </Text>
-              <Text style={{ color: "white", fontSize: 20 }}>${totalUSD}</Text>
+              <Text style={{ color: "black", fontSize: 20 }}>${totalUSD}</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -23,7 +23,7 @@ const RestaurantItem = ({ restaurantsData, navigation }) => {
         >
           <View
             key={restaurant.id}
-            style={{ marginTop: 7, padding: 15, backgroundColor: "white" }}
+            style={{ marginTop: 10, padding: 15, backgroundColor: "#0277bd" }}
           >
             <RestaurantImage imageUrl={restaurant.image_url} />
             <RestarauntInfo name={restaurant.name} rating={restaurant.rating} />
@@ -40,7 +40,7 @@ const RestaurantImage = ({ imageUrl }) => (
       source={{
         uri: imageUrl,
       }}
-      style={{ width: "100%", height: 180 }}
+      style={{ width: "100%", height: 180, borderRadius: 10 }}
     />
     <TouchableOpacity style={{ position: "absolute", right: 20, top: 20 }}>
       <MaterialCommunityIcons name="heart-outline" size={25} color="white" />
@@ -57,12 +57,16 @@ const RestarauntInfo = ({ name, rating }) => (
     }}
   >
     <View>
-      <Text style={{ fontSize: 15, fontWeight: "bold" }}>{name}</Text>
-      <Text style={{ fontSize: 13, color: "gray" }}>40-45 * min</Text>
+      <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+        {name}
+      </Text>
+      <Text style={{ fontSize: 13, color: "gray", color: "white" }}>
+        40-45 * min
+      </Text>
     </View>
     <View
       style={{
-        backgroundColor: "#e6e6e6",
+        backgroundColor: "#ff8f00",
         width: 30,
         height: 30,
         borderRadius: 50,
@@ -70,7 +74,7 @@ const RestarauntInfo = ({ name, rating }) => (
         justifyContent: "center",
       }}
     >
-      <Text>{rating}</Text>
+      <Text style={{ color: "white" }}>{rating}</Text>
     </View>
   </View>
 );

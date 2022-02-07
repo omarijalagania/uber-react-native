@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider } from "react-native-elements";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const goods = [
   {
     title: "Tendori Chiken",
@@ -68,6 +68,17 @@ const MenuItem = ({ restaurauntName }) => {
     });
   };
 
+  const cartItems = useSelector(
+    (state) => state.cartReducer.selectedItems.items
+  );
+
+  //on items refresh check mark stays on
+  const isFoodCart = (food, cartItems) => {
+    return Boolean(
+      cartItems.filter((item) => item.title === food.title).length
+    );
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {goods.map((item, index) => (
@@ -75,16 +86,25 @@ const MenuItem = ({ restaurauntName }) => {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              backgroundColor: "#0277bd",
+              justifyContent: "space-around",
               alignItems: "center",
-              margin: 20,
+              borderRadius: 10,
+              marginVertical: 20,
+              marginHorizontal: 13,
             }}
           >
-            <BouncyCheckbox
-              iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
-              fillColor="green"
-              onPress={(checkboxValue) => selectItem(item, checkboxValue)}
-            />
+            <View style={{ marginLeft: 10 }}>
+              <BouncyCheckbox
+                iconStyle={{
+                  borderColor: "#ff8f00",
+                  borderRadius: 0,
+                }}
+                fillColor="#ff8f00"
+                isChecked={isFoodCart(item, cartItems)}
+                onPress={(checkboxValue) => selectItem(item, checkboxValue)}
+              />
+            </View>
             <FoodInfo
               title={item.title}
               description={item.description}
@@ -102,9 +122,11 @@ const MenuItem = ({ restaurauntName }) => {
 
 const FoodInfo = ({ title, description, price }) => (
   <View style={{ width: 240, justifyContent: "space-evenly" }}>
-    <Text style={{ fontSize: 19, fontWeight: "bold" }}>{title}</Text>
-    <Text>{description}</Text>
-    <Text>{price}</Text>
+    <Text style={{ fontSize: 19, fontWeight: "bold", color: "white" }}>
+      {title}
+    </Text>
+    <Text style={{ color: "white" }}>{description}</Text>
+    <Text style={{ color: "#ff8f00" }}>{price}</Text>
   </View>
 );
 

@@ -14,7 +14,7 @@ const About = ({ route }) => {
   } ${rating ? " .  " + rating : ""}`;
 
   return (
-    <View>
+    <View style={{ backgroundColor: "#0277bd" }}>
       <RestaurantImage image={image} />
       <RestaurantTitle title={name} />
       <RestaurantDescription description={description} />
@@ -28,7 +28,7 @@ const RestaurantImage = ({ image }) => (
     source={{
       uri: image,
     }}
-    style={{ width: "100%", height: 180 }}
+    style={{ width: "100%", height: 230 }}
   />
 );
 
@@ -38,6 +38,7 @@ const RestaurantTitle = ({ title }) => (
       fontSize: 29,
       fontWeight: "bold",
       marginTop: 10,
+      color: "white",
       marginHorizontal: 15,
     }}
   >
@@ -52,6 +53,7 @@ const RestaurantDescription = ({ description }) => (
       marginHorizontal: 15,
       fontSize: 15,
       fontWeight: "400",
+      color: "white",
     }}
   >
     {description}

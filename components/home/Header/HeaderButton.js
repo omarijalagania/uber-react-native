@@ -6,15 +6,16 @@ const HeaderButton = ({ text, activeTab, setActiveTab }) => {
     <TouchableOpacity
       onPress={() => setActiveTab(text)}
       style={{
-        backgroundColor: activeTab === text ? "black" : "white",
+        backgroundColor: activeTab === text ? "#ff8f00" : "white",
         paddingVertical: 6,
         paddingHorizontal: 16,
         borderRadius: 30,
+        marginHorizontal: 5,
       }}
     >
       <Text
         style={{
-          color: activeTab === text ? "white" : "black",
+          color: activeTab === text ? "white" : "#ff8f00",
           fontSize: 15,
           fontWeight: "bold",
         }}

@@ -36,9 +36,15 @@ const Home = ({ navigation }) => {
     getRestaurants();
   }, [city, activeTab]);
 
+  //0d47a1   - -dark blue
+
+  //#ff8f00  -- orange
+
+  //0277bd = light blue
+
   return (
-    <SafeAreaView style={{ backgroundColor: "#eee", flex: 1 }}>
-      <View style={{ backgroundColor: "white", padding: 10 }}>
+    <SafeAreaView style={{ backgroundColor: "#0d47a1", flex: 1 }}>
+      <View style={{ backgroundColor: "#0d47a1", padding: 10 }}>
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <Searchbar setCity={setCity} />
       </View>

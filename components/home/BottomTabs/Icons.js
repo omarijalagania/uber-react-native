@@ -6,10 +6,11 @@ const Icons = ({ name, text }) => (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
       <FontAwesome5
         name={name}
+        color="#ff8f00"
         size={25}
         style={{ marginBottom: 3, alignSelf: "center" }}
       />
-      <Text>{text}</Text>
+      <Text style={{ color: "white" }}>{text}</Text>
     </View>
   </TouchableOpacity>
 );

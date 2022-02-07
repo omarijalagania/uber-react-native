@@ -16,13 +16,13 @@ const Searchbar = ({ setCity }) => {
         placeholder="Search"
         styles={{
           textInput: {
-            backgroundColor: "#eee",
+            backgroundColor: "#0277bd",
             borderRadius: 20,
             fontWeight: "700",
             marginTop: 7,
           },
           textInputContainer: {
-            backgroundColor: "#eee",
+            backgroundColor: "#0277bd",
             borderRadius: 50,
             flexDirection: "row",
             alignItems: "center",
@@ -31,7 +31,7 @@ const Searchbar = ({ setCity }) => {
         }}
         renderLeftButton={() => (
           <View style={{ marginLeft: 10 }}>
-            <IonIcons name="location-sharp" size={24} />
+            <IonIcons color="#ff8f00" name="location-sharp" size={24} />
           </View>
         )}
         renderRightButton={() => (
@@ -40,17 +40,18 @@ const Searchbar = ({ setCity }) => {
               flexDirection: "row",
               alignItems: "center",
               marginRight: 8,
-              backgroundColor: "white",
+              backgroundColor: "#0d47a1",
               padding: 9,
               borderRadius: 30,
             }}
           >
             <AntDesign
               name="clockcircle"
+              color="#ff8f00"
               size={11}
               style={{ marginRight: 6 }}
             />
-            <Text>Search</Text>
+            <Text style={{ color: "white" }}>Search</Text>
           </View>
         )}
       />

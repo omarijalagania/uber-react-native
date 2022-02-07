@@ -6,7 +6,7 @@ import MenuItem from "../components/restaurantDetails/MenuItem";
 import ViewCart from "../components/restaurantDetails/ViewCart";
 const RestaurantDetails = ({ route, navigation }) => {
   return (
-    <View>
+    <View style={{ backgroundColor: "#0d47a1" }}>
       <About route={route} />
       <MenuItem restaurauntName={route.params.name} />
       <ViewCart navigation={navigation} restaurauntName={route.params.name} />

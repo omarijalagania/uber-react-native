@@ -37,7 +37,7 @@ const Categories = () => {
     <View
       style={{
         marginTop: 5,
-        backgroundColor: "white",
+        backgroundColor: "#0277bd",
         paddingVertical: 10,
         paddingLeft: 20,
       }}
@@ -53,7 +53,9 @@ const Categories = () => {
                 source={item.image}
                 style={{ width: 50, height: 40, resizeMode: "contain" }}
               />
-              <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+              <Text
+                style={{ color: "white", fontSize: 13, fontWeight: "bold" }}
+              >
                 {item.text}
               </Text>
             </View>
