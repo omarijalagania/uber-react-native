@@ -17,7 +17,9 @@ const BottomTabs = () => {
         <Icons name="home" text="Home" />
         <Icons name="search" text="Search" />
         <Icons name="shopping-bag" text="Grocery" />
-        <Icons name="receipt" text="Orders" />
+        <View>
+          <Icons name="receipt" text="Orders" />
+        </View>
         <Icons name="user" text="Account" />
       </View>
     </>
