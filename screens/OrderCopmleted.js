@@ -64,10 +64,7 @@ const OrderCopmleted = ({ navigation, route }) => {
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((prev, curr) => prev + curr, 0);
 
-  const totalUSD = total.toLocaleString("en", {
-    style: "currency",
-    currency: "USD",
-  });
+  let totalUSD = (Math.round(total * 100) / 100).toFixed(2);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0d47a1" }}>
       <View
