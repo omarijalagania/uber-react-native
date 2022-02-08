@@ -6,6 +6,7 @@ import RestaurantDetails from "../screens/RestaurantDetails";
 import { Provider } from "react-redux";
 import configureStore from "../redux/store";
 import OrderCopmleted from "../screens/OrderCopmleted";
+import Orders from "../screens/Orders";
 
 const store = configureStore();
 
@@ -32,6 +33,7 @@ const RootNavigation = () => {
               route: route.key,
             })}
           />
+          <Stack.Screen name="Orders" component={Orders} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
