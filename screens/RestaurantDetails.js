@@ -18,29 +18,27 @@ const foods = {
       title: "Salad with Chiken",
       price: "$14.3",
       description: "pleasent salad with chiken",
-      image:
-        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
+      image: "https://images.pexels.com/photos/196643/pexels-photo-196643.jpeg",
     },
     {
       title: "Vegetables with Fish",
       price: "$11.23",
       description: "fresh fish with vegetables",
       image:
-        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
+        "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg",
     },
     {
       title: "Beef",
       price: "$13.22",
       description: "beef with potatoes",
       image:
-        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
+        "https://images.pexels.com/photos/1410236/pexels-photo-1410236.jpeg",
     },
     {
       title: "Potatoes with Salad",
       price: "$12.52",
       description: "Salad with potatoes",
-      image:
-        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
+      image: "https://images.pexels.com/photos/671956/pexels-photo-671956.jpeg",
     },
     {
       title: "rice and ananas",
@@ -53,13 +51,6 @@ const foods = {
       title: "Potatoes 22 with Salad",
       price: "$12.52",
       description: "Salad with potatoes",
-      image:
-        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
-    },
-    {
-      title: "rice eee and ananas",
-      price: "$23.53",
-      description: "fresh ananas with rice",
       image:
         "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
     },
