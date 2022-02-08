@@ -16,7 +16,7 @@ const foods = {
     },
     {
       title: "Salad with Chiken",
-      price: "$14.30",
+      price: "$14.3",
       description: "pleasent salad with chiken",
       image:
         "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
@@ -30,7 +30,7 @@ const foods = {
     },
     {
       title: "Beef",
-      price: "$13.2",
+      price: "$13.22",
       description: "beef with potatoes",
       image:
         "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",

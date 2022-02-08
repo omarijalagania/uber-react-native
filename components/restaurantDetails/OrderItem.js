@@ -8,12 +8,17 @@ const OrderItem = ({ item }) => {
         flexDirection: "row",
         justifyContent: "space-between",
         padding: 20,
-        borderWidth: 1,
-        borderBottomColor: "#999",
+        borderRadius: 10,
+        backgroundColor: "#0277bd",
+        marginBottom: 10,
       }}
     >
-      <Text style={{ fontWeight: "bold", fontSize: 16 }}>{item.title}</Text>
-      <Text style={{ opacity: 0.7, fontSize: 16 }}>{item.price}</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 16, color: "white" }}>
+        {item.title}
+      </Text>
+      <Text style={{ opacity: 0.7, fontSize: 16, color: "white" }}>
+        {item.price}
+      </Text>
     </View>
   );
 };

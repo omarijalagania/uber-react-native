@@ -6,13 +6,16 @@ import HeaderTabs from "../components/home/Header/HeaderTabs";
 import RestaurantItem from "../components/home/Restaurant/RestaurantItem";
 import Searchbar from "../components/home/Search/Searchbar";
 import BottomTabs from "../components/home/BottomTabs/BottomTabs";
+import Loader from "../components/home/Loader/Loader";
 const Home = ({ navigation }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [city, setCity] = useState("georgia");
   const [activeTab, setActiveTab] = useState("Delivery");
+  const [isLoading, setIsLoading] = useState(false);
   //Get restaurantsData from API
   useEffect(() => {
     const getRestaurants = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(
           `https://api.yelp.com/v3/businesses/search?term=food&location=${city}&limit=10`,
@@ -29,7 +32,9 @@ const Home = ({ navigation }) => {
             businesses.transactions.includes(activeTab.toLowerCase())
           )
         );
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.log(error);
       }
     };
@@ -48,10 +53,17 @@ const Home = ({ navigation }) => {
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <Searchbar setCity={setCity} />
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Categories />
-        <RestaurantItem restaurantsData={restaurants} navigation={navigation} />
-      </ScrollView>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Categories />
+          <RestaurantItem
+            restaurantsData={restaurants}
+            navigation={navigation}
+          />
+        </ScrollView>
+      )}
 
       <BottomTabs />
     </SafeAreaView>

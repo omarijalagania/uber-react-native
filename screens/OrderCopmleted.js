@@ -1,9 +1,16 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import LottieView from "lottie-react-native";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import MenuItem from "../components/restaurantDetails/MenuItem";
-const OrderCopmleted = () => {
+import Icons from "../components/home/BottomTabs/Icons";
+const OrderCopmleted = ({ navigation }) => {
   const [lastOrder, setLastOrder] = useState({
     items: [
       {
@@ -15,6 +22,22 @@ const OrderCopmleted = () => {
     ],
   });
 
+  const clearCart = async () => {
+    try {
+      const request = await fetch(
+        "https://restapi-mongo.onrender.com/api/uber/cart/delete/items",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const getCart = async () => {
       try {
@@ -24,17 +47,14 @@ const OrderCopmleted = () => {
         const data = await response.json();
         let convData = Object.assign({}, data);
         let ob = { items: convData[0].items };
-        console.log(convData);
-
         setLastOrder(ob);
+        clearCart();
       } catch (error) {
         console.log(error);
       }
     };
     getCart();
   }, []);
-
-  console.log(lastOrder);
 
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
@@ -49,7 +69,7 @@ const OrderCopmleted = () => {
     currency: "USD",
   });
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#0d47a1" }}>
       {/* green checkmark */}
       <View
         style={{
@@ -65,7 +85,7 @@ const OrderCopmleted = () => {
           speed={0.5}
           loop={false}
         />
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
           Your order at {restaurantName} has been placed for {totalUSD}
         </Text>
         <ScrollView>
@@ -75,12 +95,20 @@ const OrderCopmleted = () => {
             marginLeft={10}
           />
           <LottieView
-            style={{ height: 200, alignSelf: "center" }}
+            style={{ height: 330, alignSelf: "center" }}
             source={require("../assets/animations/cooking.json")}
             autoPlay
             speed={0.5}
           />
         </ScrollView>
+        <View
+          style={{ marginBottom: 30 }}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
+          <Icons name="home" text="Home" />
+        </View>
       </View>
     </SafeAreaView>
   );

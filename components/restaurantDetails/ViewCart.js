@@ -1,15 +1,17 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { useSelector } from "react-redux";
+import Loader from "../home/Loader/Loader";
 const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
   );
 
   const sentToMongoDB = async () => {
+    setIsLoading(true);
     try {
       const request = await fetch(
         "https://restapi-mongo.onrender.com/api/uber/cart",
@@ -26,14 +28,21 @@ const ViewCart = ({ navigation }) => {
                 price: item.price,
                 image: item.image,
               };
+
               return obj;
             }),
             restaurantName: restaurantName,
           }),
         }
       );
+      setModalVisible(false);
+      setTimeout(() => {
+        setIsLoading(false);
+        navigation.navigate("OrderCompleted");
+      }, 2500);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -47,24 +56,20 @@ const ViewCart = ({ navigation }) => {
           ))}
           <View style={styles.subtotalContainer}>
             <Text style={styles.subtotalText}>Subtotal</Text>
-            <Text>{totalUSD}</Text>
+            <Text style={{ color: "white" }}>${totalUSD}</Text>
           </View>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <TouchableOpacity
               style={{
                 marginTop: 20,
-                backgroundColor: "black",
+                backgroundColor: "#ff8f00",
                 alignItems: "center",
                 padding: 13,
                 borderRadius: 30,
                 width: 300,
                 position: "relative",
               }}
-              onPress={() => {
-                sentToMongoDB();
-                navigation.navigate("OrderCompleted");
-                setModalVisible(false);
-              }}
+              onPress={() => sentToMongoDB()}
             >
               <Text style={{ color: "white", fontSize: 20 }}>Checkout</Text>
               <Text
@@ -105,7 +110,7 @@ const ViewCart = ({ navigation }) => {
       >
         {modalContent()}
       </Modal>
-      {total ? (
+      {total && !isLoading ? (
         <View
           style={{
             alignItems: "center",
@@ -146,6 +151,7 @@ const ViewCart = ({ navigation }) => {
       ) : (
         <></>
       )}
+      {isLoading ? <Loader /> : <></>}
     </>
   );
 };
@@ -159,7 +165,7 @@ const styles = StyleSheet.create({
   },
 
   modalCheckoutContainer: {
-    backgroundColor: "white",
+    backgroundColor: "#0d47a1",
     padding: 16,
     height: 600,
     borderWidth: 1,
@@ -170,6 +176,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 18,
     marginBottom: 10,
+    color: "white",
   },
 
   subtotalContainer: {
@@ -183,5 +190,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 15,
     marginBottom: 10,
+    color: "white",
   },
 });

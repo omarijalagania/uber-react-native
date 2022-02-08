@@ -24,7 +24,13 @@ const RootNavigation = () => {
             name="RestaurantDetails"
             component={RestaurantDetails}
           />
-          <Stack.Screen name="OrderCompleted" component={OrderCopmleted} />
+          <Stack.Screen
+            name="OrderCompleted"
+            component={OrderCopmleted}
+            options={({ route, navigation }) => ({
+              navigation: navigation,
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
