@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import OrderItem from "./OrderItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../home/Loader/Loader";
 const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -9,6 +9,9 @@ const ViewCart = ({ navigation }) => {
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
   );
+
+  //clear cart after checkout soon
+  const dispatch = useDispatch();
 
   const sentToMongoDB = async () => {
     setIsLoading(true);
