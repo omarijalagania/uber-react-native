@@ -7,16 +7,27 @@ const foods = {
       title: "Salad with Chiken",
       description: "pleasent salad with chiken",
       price: "$14.30",
-      _id: "620229a2aaaa729d188ab4ce",
+      image:
+        "https://images.pexels.com/photos/5562924/pexels-photo-5562924.jpeg",
     },
   ],
 };
 const Orders = () => {
   return (
-    <SafeAreaView>
-      <Text>Orders History</Text>
-      <ScrollView>
-        <MenuItem foods={foods.items} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#0d47a1" }}>
+      <Text
+        style={{
+          marginTop: 30,
+          fontSize: 22,
+          fontWeight: "bold",
+          alignSelf: "center",
+          color: "white",
+        }}
+      >
+        Orders History
+      </Text>
+      <ScrollView style={{ marginHorizontal: 16 }}>
+        <MenuItem hideCheckbox={true} foods={foods.items} />
       </ScrollView>
     </SafeAreaView>
   );
