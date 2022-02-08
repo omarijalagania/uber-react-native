@@ -95,10 +95,7 @@ const ViewCart = ({ navigation }) => {
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((a, b) => a + b, 0);
 
-  let totalUSD = total.toLocaleString("en", {
-    style: "currency",
-    currency: "USD",
-  });
+  let totalUSD = (Math.round(total * 100) / 100).toFixed(2);
 
   return (
     <>
