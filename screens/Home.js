@@ -65,7 +65,7 @@ const Home = ({ navigation }) => {
         </ScrollView>
       )}
 
-      <BottomTabs />
+      {!isLoading ? <BottomTabs /> : <></>}
     </SafeAreaView>
   );
 };

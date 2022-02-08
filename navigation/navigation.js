@@ -29,6 +29,7 @@ const RootNavigation = () => {
             component={OrderCopmleted}
             options={({ route, navigation }) => ({
               navigation: navigation,
+              route: route.key,
             })}
           />
         </Stack.Navigator>

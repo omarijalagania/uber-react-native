@@ -10,7 +10,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import MenuItem from "../components/restaurantDetails/MenuItem";
 import Icons from "../components/home/BottomTabs/Icons";
-const OrderCopmleted = ({ navigation }) => {
+const OrderCopmleted = ({ navigation, route }) => {
   const [lastOrder, setLastOrder] = useState({
     items: [
       {
@@ -70,7 +70,6 @@ const OrderCopmleted = ({ navigation }) => {
   });
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0d47a1" }}>
-      {/* green checkmark */}
       <View
         style={{
           margin: 15,
@@ -101,14 +100,6 @@ const OrderCopmleted = ({ navigation }) => {
             speed={0.5}
           />
         </ScrollView>
-        <View
-          style={{ marginBottom: 30 }}
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-        >
-          <Icons name="home" text="Home" />
-        </View>
       </View>
     </SafeAreaView>
   );
