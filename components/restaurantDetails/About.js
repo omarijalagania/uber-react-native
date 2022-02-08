@@ -4,7 +4,6 @@ import { Divider } from "react-native-elements";
 
 const About = ({ route }) => {
   const { name, image, price, reviews, rating, categories } = route.params;
-
   const formatedCategories = categories
     .map((category) => category.title)
     .join(" . ");

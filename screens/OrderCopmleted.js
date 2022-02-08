@@ -85,7 +85,7 @@ const OrderCopmleted = ({ navigation, route }) => {
           loop={false}
         />
         <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
-          Your order at {restaurantName} has been placed for {totalUSD}
+          Your order at {restaurantName} has been placed for ${totalUSD}
         </Text>
         <ScrollView>
           <MenuItem
