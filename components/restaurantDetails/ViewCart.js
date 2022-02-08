@@ -21,9 +21,10 @@ const ViewCart = ({ navigation }) => {
           body: JSON.stringify({
             items: items.map((item) => {
               const obj = {
-                name: item.title,
+                title: item.title,
                 description: item.description,
                 price: item.price,
+                image: item.image,
               };
               return obj;
             }),
@@ -61,6 +62,7 @@ const ViewCart = ({ navigation }) => {
               }}
               onPress={() => {
                 sentToMongoDB();
+                navigation.navigate("OrderCompleted");
                 setModalVisible(false);
               }}
             >
