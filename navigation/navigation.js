@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import configureStore from "../redux/store";
 import OrderCopmleted from "../screens/OrderCopmleted";
 import Orders from "../screens/Orders";
+import LogIn from "../screens/LogIn";
 
 const store = configureStore();
 
@@ -34,6 +35,7 @@ const RootNavigation = () => {
             })}
           />
           <Stack.Screen name="Orders" component={Orders} />
+          <Stack.Screen name="Account" component={LogIn} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

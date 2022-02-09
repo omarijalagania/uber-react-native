@@ -21,7 +21,9 @@ const BottomTabs = ({ navigation }) => {
         <View onTouchStart={() => navigation.navigate("Orders")}>
           <Icons name="receipt" text="Orders" />
         </View>
-        <Icons name="user" text="Account" />
+        <View onTouchStart={() => navigation.navigate("Account")}>
+          <Icons name="user" text="Account" />
+        </View>
       </View>
     </>
   );
