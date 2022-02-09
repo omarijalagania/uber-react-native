@@ -2,7 +2,8 @@ import { View, Text } from "react-native";
 import React from "react";
 import Icons from "./Icons";
 import { Divider } from "react-native-elements/dist/divider/Divider";
-const BottomTabs = () => {
+
+const BottomTabs = ({ navigation }) => {
   return (
     <>
       <Divider width={1} />
@@ -17,7 +18,7 @@ const BottomTabs = () => {
         <Icons name="home" text="Home" />
         <Icons name="search" text="Search" />
         <Icons name="shopping-bag" text="Grocery" />
-        <View>
+        <View onTouchStart={() => navigation.navigate("Orders")}>
           <Icons name="receipt" text="Orders" />
         </View>
         <Icons name="user" text="Account" />

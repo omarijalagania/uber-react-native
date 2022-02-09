@@ -13,8 +13,20 @@ const ViewCart = ({ navigation }) => {
   //clear cart after checkout soon
   const dispatch = useDispatch();
 
+  const clearSelectedItems = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        items: [],
+        restaurauntName: "",
+        checkboxValue: false,
+      },
+    });
+  };
+
   const sentToMongoDB = async () => {
     setIsLoading(true);
+    clearSelectedItems();
     try {
       const request = await fetch(
         "https://restapi-mongo.onrender.com/api/uber/cart",
@@ -39,6 +51,7 @@ const ViewCart = ({ navigation }) => {
         }
       );
       setModalVisible(false);
+
       setTimeout(() => {
         setIsLoading(false);
         navigation.navigate("OrderCompleted");

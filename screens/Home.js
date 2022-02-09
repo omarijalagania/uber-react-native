@@ -56,16 +56,19 @@ const Home = ({ navigation }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          navigation={navigation}
+          showsVerticalScrollIndicator={false}
+        >
           <Categories />
           <RestaurantItem
-            restaurantsData={restaurants}
             navigation={navigation}
+            restaurantsData={restaurants}
           />
         </ScrollView>
       )}
 
-      {!isLoading ? <BottomTabs /> : <></>}
+      {!isLoading ? <BottomTabs navigation={navigation} /> : <></>}
     </SafeAreaView>
   );
 };

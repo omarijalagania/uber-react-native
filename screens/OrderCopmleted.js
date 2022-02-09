@@ -97,6 +97,9 @@ const OrderCopmleted = ({ navigation, route }) => {
             speed={0.5}
           />
         </ScrollView>
+        <View onTouchStart={() => navigation.navigate("Home")}>
+          <Icons name="home" title="" />
+        </View>
       </View>
     </SafeAreaView>
   );
