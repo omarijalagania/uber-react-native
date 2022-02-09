@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import MenuItem from "../components/restaurantDetails/MenuItem";
+import BottomTabs from "../components/home/BottomTabs/BottomTabs";
 const foods = {
   items: [
     {
@@ -12,7 +13,7 @@ const foods = {
     },
   ],
 };
-const Orders = () => {
+const Orders = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#0d47a1" }}>
       <Text
@@ -29,6 +30,7 @@ const Orders = () => {
       <ScrollView style={{ marginHorizontal: 16 }}>
         <MenuItem hideCheckbox={true} foods={foods.items} />
       </ScrollView>
+      <BottomTabs navigation={navigation} />
     </SafeAreaView>
   );
 };

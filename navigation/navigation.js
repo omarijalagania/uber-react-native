@@ -34,7 +34,13 @@ const RootNavigation = () => {
               route: route.key,
             })}
           />
-          <Stack.Screen name="Orders" component={Orders} />
+          <Stack.Screen
+            name="Orders"
+            options={({ route, navigation }) => ({
+              navigation: navigation,
+            })}
+            component={Orders}
+          />
           <Stack.Screen name="Account" component={LogIn} />
         </Stack.Navigator>
       </NavigationContainer>

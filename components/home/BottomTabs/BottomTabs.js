@@ -15,9 +15,11 @@ const BottomTabs = ({ navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        <Icons name="home" text="Home" />
+        <View onTouchStart={() => navigation.navigate("Home")}>
+          <Icons name="home" text="Home" />
+        </View>
         <Icons name="search" text="Search" />
-        <Icons name="shopping-bag" text="Grocery" />
+        <Icons name="star" text="Favorites" />
         <View onTouchStart={() => navigation.navigate("Orders")}>
           <Icons name="receipt" text="Orders" />
         </View>
