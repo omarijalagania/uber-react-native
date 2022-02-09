@@ -8,6 +8,7 @@ import configureStore from "../redux/store";
 import OrderCopmleted from "../screens/OrderCopmleted";
 import Orders from "../screens/Orders";
 import LogIn from "../screens/LogIn";
+import Favorites from "../screens/Favorites";
 
 const store = configureStore();
 
@@ -42,6 +43,7 @@ const RootNavigation = () => {
             component={Orders}
           />
           <Stack.Screen name="Account" component={LogIn} />
+          <Stack.Screen name="Favorites" component={Favorites} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

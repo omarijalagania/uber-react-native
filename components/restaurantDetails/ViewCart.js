@@ -28,6 +28,7 @@ const ViewCart = ({ navigation }) => {
     setIsLoading(true);
     clearSelectedItems();
     try {
+      setModalVisible(false);
       const request = await fetch(
         "https://restapi-mongo.onrender.com/api/uber/cart",
         {
@@ -50,7 +51,6 @@ const ViewCart = ({ navigation }) => {
           }),
         }
       );
-      setModalVisible(false);
 
       setTimeout(() => {
         setIsLoading(false);
