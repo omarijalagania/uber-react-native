@@ -124,18 +124,21 @@ const LogIn = ({ navigation }) => {
                   >
                     Not Registered?
                   </Text>
-
-                  <Text
-                    style={{
-                      marginTop: 10,
-                      alignSelf: "center",
-                      fontSize: 14,
-
-                      color: "white",
-                    }}
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Register")}
                   >
-                    Registration
-                  </Text>
+                    <Text
+                      style={{
+                        marginTop: 10,
+                        alignSelf: "center",
+                        fontSize: 14,
+
+                        color: "white",
+                      }}
+                    >
+                      Registration
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </>
             ) : (

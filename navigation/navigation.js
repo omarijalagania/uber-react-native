@@ -9,6 +9,7 @@ import OrderCopmleted from "../screens/OrderCopmleted";
 import Orders from "../screens/Orders";
 import LogIn from "../screens/LogIn";
 import Favorites from "../screens/Favorites";
+import Register from "../screens/Register";
 
 const store = configureStore();
 
@@ -44,6 +45,13 @@ const RootNavigation = () => {
           />
           <Stack.Screen name="Account" component={LogIn} />
           <Stack.Screen name="Favorites" component={Favorites} />
+          <Stack.Screen
+            options={({ navigation }) => ({
+              navigation: navigation,
+            })}
+            name="Register"
+            component={Register}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
