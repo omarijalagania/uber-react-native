@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../home/Loader/Loader";
+
 const ViewCart = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -10,6 +11,7 @@ const ViewCart = ({ navigation }) => {
     (state) => state.cartReducer.selectedItems
   );
 
+  const token = useSelector((state) => state.tokenReducer.token);
   //clear cart after checkout soon
   const dispatch = useDispatch();
 
@@ -121,7 +123,7 @@ const ViewCart = ({ navigation }) => {
         animationType="slide"
         onRequestClose={() => setModalVisible(false)}
       >
-        {modalContent()}
+        {modalContent(navigation)}
       </Modal>
       {total && !isLoading ? (
         <View
@@ -142,7 +144,9 @@ const ViewCart = ({ navigation }) => {
             }}
           >
             <TouchableOpacity
-              onPress={() => setModalVisible(true)}
+              onPress={() =>
+                token ? setModalVisible(true) : navigation.navigate("Account")
+              }
               style={{
                 marginTop: 20,
                 flexDirection: "row",
