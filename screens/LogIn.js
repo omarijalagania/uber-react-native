@@ -133,7 +133,7 @@ const LogIn = ({ navigation }) => {
                         alignSelf: "center",
                         fontSize: 14,
 
-                        color: "white",
+                        color: "orange",
                       }}
                     >
                       Registration
