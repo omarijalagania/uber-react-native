@@ -29,6 +29,14 @@ const MenuItem = ({ restaurauntName, foods, hideCheckbox, marginLeft }) => {
     );
   };
 
+  if (!foods) {
+    return (
+      <>
+        <Text>Loading...</Text>
+      </>
+    );
+  }
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((item, index) => (

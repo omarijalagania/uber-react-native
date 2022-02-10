@@ -8,53 +8,38 @@ import {
 import LottieView from "lottie-react-native";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import jwtDecode from "jwt-decode";
 import MenuItem from "../components/restaurantDetails/MenuItem";
 import Icons from "../components/home/BottomTabs/Icons";
+
 const OrderCopmleted = ({ navigation, route }) => {
-  const [lastOrder, setLastOrder] = useState({
-    items: [
-      {
-        title: "Salad with Chiken",
-        description: "pleasent salad with chiken",
-        price: "$14.30",
-        _id: "620229a2aaaa729d188ab4ce",
-      },
-    ],
-  });
+  const [userId, setUserId] = useState("");
+  const [lastOrder, setLastOrder] = useState([]);
+  const token = useSelector((state) => state.tokenReducer.token);
 
-  const clearCart = async () => {
-    try {
-      const request = await fetch(
-        "https://restapi-mongo.onrender.com/api/uber/cart/delete/items",
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  //token
   useEffect(() => {
-    const getCart = async () => {
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserId(decoded._id);
+    }
+  }, [token]);
+
+  //cart
+  useEffect(() => {
+    const getCartHabdler = async () => {
       try {
         const response = await fetch(
-          "https://restapi-mongo.onrender.com/api/uber/cart/items"
+          `https://restapi-mongo.onrender.com/api/user/cart/${userId}`
         );
-        const data = await response.json();
-        let convData = Object.assign({}, data);
-        let ob = { items: convData[0].items };
-        setLastOrder(ob);
-        clearCart();
+        const responseData = await response.json();
+        setLastOrder(responseData);
       } catch (error) {
         console.log(error);
       }
     };
-    getCart();
-  }, []);
+    getCartHabdler();
+  }, [userId]);
 
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
@@ -81,15 +66,27 @@ const OrderCopmleted = ({ navigation, route }) => {
           speed={0.5}
           loop={false}
         />
-        <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
-          Your order at {restaurantName} has been placed for ${totalUSD}
-        </Text>
+        {lastOrder ? (
+          <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
+            Your order at {restaurantName} has been placed for ${totalUSD}
+          </Text>
+        ) : (
+          <>
+            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
+              No order has been placed
+            </Text>
+          </>
+        )}
         <ScrollView>
-          <MenuItem
-            foods={lastOrder.items}
-            hideCheckbox={true}
-            marginLeft={10}
-          />
+          {lastOrder ? (
+            <MenuItem
+              foods={lastOrder.items}
+              hideCheckbox={true}
+              marginLeft={10}
+            />
+          ) : (
+            <></>
+          )}
           <LottieView
             style={{ height: 330, alignSelf: "center" }}
             source={require("../assets/animations/cooking.json")}

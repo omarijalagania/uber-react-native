@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OrderItem from "./OrderItem";
 import jwtDecode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ const ViewCart = ({ navigation }) => {
   const [userId, setUserId] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [userCart, setUserCart] = useState([]);
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
   );
@@ -17,11 +18,12 @@ const ViewCart = ({ navigation }) => {
   //clear cart after checkout soon
   const dispatch = useDispatch();
 
-  if (token) {
-    const decoded = jwtDecode(token);
-    setUserId(decoded._id);
-  }
-
+  useEffect(() => {
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserId(decoded._id);
+    }
+  }, [token]);
   const clearSelectedItems = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -34,6 +36,13 @@ const ViewCart = ({ navigation }) => {
   };
 
   const sentToMongoDB = async () => {
+    let objz = items.map((item) => ({
+      title: item.title,
+      description: item.description,
+      price: item.price,
+      image: item.image,
+    }));
+
     setIsLoading(true);
     clearSelectedItems();
     try {
@@ -45,18 +54,8 @@ const ViewCart = ({ navigation }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            items: items.map((item) => {
-              const obj = {
-                title: item.title,
-                description: item.description,
-                price: item.price,
-                image: item.image,
-              };
 
-              return obj;
-            }),
-          }),
+          body: JSON.stringify(objz),
         }
       );
 
@@ -68,6 +67,14 @@ const ViewCart = ({ navigation }) => {
       console.log(error);
       setIsLoading(false);
     }
+  };
+
+  const getCartHabdler = async () => {
+    const response = await fetch(
+      `https://restapi-mongo.onrender.com/api/user/cart/${userId}`
+    );
+    const responseData = await response.json();
+    setUserCart(responseData);
   };
 
   const modalContent = () => {
@@ -93,7 +100,7 @@ const ViewCart = ({ navigation }) => {
                 width: 300,
                 position: "relative",
               }}
-              onPress={() => sentToMongoDB()}
+              onPress={sentToMongoDB}
             >
               <Text style={{ color: "white", fontSize: 20 }}>Checkout</Text>
               <Text
@@ -150,9 +157,10 @@ const ViewCart = ({ navigation }) => {
             }}
           >
             <TouchableOpacity
-              onPress={() =>
-                token ? setModalVisible(true) : navigation.navigate("Account")
-              }
+              onPress={() => {
+                token ? getCartHabdler() : navigation.navigate("Account");
+                token ? setModalVisible(true) : navigation.navigate("Account");
+              }}
               style={{
                 marginTop: 20,
                 flexDirection: "row",
