@@ -1,9 +1,18 @@
-import { View, Text, SafeAreaView } from "react-native";
-import React from "react";
-
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import jwtDecode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 
 const LoggedIn = ({ token }) => {
+  const [userName, setUserName] = React.useState("");
+
+  useEffect(() => {
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserName(decoded.name);
+    }
+  }, [token]);
+
   const dispatch = useDispatch();
   return (
     <SafeAreaView
@@ -22,10 +31,10 @@ const LoggedIn = ({ token }) => {
           marginBottom: 20,
         }}
       >
-        Login Token :
+        Welcome!
       </Text>
-      <Text style={{ paddingHorizontal: 20, color: "white" }}>{token}</Text>
-      <View
+      <Text style={{ paddingHorizontal: 20, color: "white" }}>{userName}</Text>
+      <TouchableOpacity
         style={{
           marginTop: 20,
           backgroundColor: "orange",
@@ -33,10 +42,10 @@ const LoggedIn = ({ token }) => {
           paddingHorizontal: 25,
           borderRadius: 10,
         }}
-        onTouchStart={() => dispatch({ type: "SET_TOKEN", payload: "" })}
+        onPress={() => dispatch({ type: "SET_TOKEN", payload: "" })}
       >
         <Text>Log Out</Text>
-      </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
