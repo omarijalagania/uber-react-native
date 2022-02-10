@@ -1,10 +1,12 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import OrderItem from "./OrderItem";
+import jwtDecode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../home/Loader/Loader";
 
 const ViewCart = ({ navigation }) => {
+  const [userId, setUserId] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { items, restaurantName } = useSelector(
@@ -14,6 +16,11 @@ const ViewCart = ({ navigation }) => {
   const token = useSelector((state) => state.tokenReducer.token);
   //clear cart after checkout soon
   const dispatch = useDispatch();
+
+  if (token) {
+    const decoded = jwtDecode(token);
+    setUserId(decoded._id);
+  }
 
   const clearSelectedItems = () => {
     dispatch({
@@ -32,7 +39,7 @@ const ViewCart = ({ navigation }) => {
     try {
       setModalVisible(false);
       const request = await fetch(
-        "https://restapi-mongo.onrender.com/api/uber/cart",
+        `https://restapi-mongo.onrender.com/api/user/cart/set/${userId}`,
         {
           method: "POST",
           headers: {
@@ -49,7 +56,6 @@ const ViewCart = ({ navigation }) => {
 
               return obj;
             }),
-            restaurantName: restaurantName,
           }),
         }
       );
