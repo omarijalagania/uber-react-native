@@ -1,9 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
 import Icons from "./Icons";
+import { useSelector } from "react-redux";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 
 const BottomTabs = ({ navigation }) => {
+  const token = useSelector((state) => state.tokenReducer.token);
   return (
     <>
       <Divider width={1} />
@@ -22,7 +24,9 @@ const BottomTabs = ({ navigation }) => {
         <View onTouchStart={() => navigation.navigate("Favorites")}>
           <Icons name="star" text="Favorites" />
         </View>
-        <View onTouchStart={() => navigation.navigate("Orders")}>
+        <View
+          onTouchStart={() => navigation.navigate(token ? "Orders" : "Account")}
+        >
           <Icons name="receipt" text="Orders" />
         </View>
         <View onTouchStart={() => navigation.navigate("Account")}>
