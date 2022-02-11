@@ -17,6 +17,23 @@ const OrderCopmleted = ({ navigation, route }) => {
   const [lastOrder, setLastOrder] = useState([]);
   const token = useSelector((state) => state.tokenReducer.token);
 
+  const clearCartHabdler = async () => {
+    try {
+      const request = await fetch(
+        `https://restapi-mongo.onrender.com/api/user/cart/clear/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //token
   useEffect(() => {
     if (token) {
@@ -34,6 +51,7 @@ const OrderCopmleted = ({ navigation, route }) => {
         );
         const responseData = await response.json();
         setLastOrder(responseData);
+        clearCartHabdler();
       } catch (error) {
         console.log(error);
       }

@@ -56,13 +56,13 @@ const ViewCart = ({ navigation }) => {
     }
   };
 
-  // const getCartHabdler = async () => {
-  //   const response = await fetch(
-  //     `https://restapi-mongo.onrender.com/api/user/cart/${userId}`
-  //   );
-  //   const responseData = await response.json();
-  //   setUserCart(responseData);
-  // };
+  const getCartHabdler = async () => {
+    const response = await fetch(
+      `https://restapi-mongo.onrender.com/api/user/cart/${userId}`
+    );
+    const responseData = await response.json();
+    setUserCart(responseData);
+  };
 
   const modalContent = () => {
     return (
