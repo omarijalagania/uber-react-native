@@ -24,16 +24,6 @@ const ViewCart = ({ navigation }) => {
       setUserId(decoded._id);
     }
   }, [token]);
-  const clearSelectedItems = () => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: {
-        items: [],
-        restaurauntName: "",
-        checkboxValue: false,
-      },
-    });
-  };
 
   const sentToMongoDB = async () => {
     let objz = items.map((item) => ({
@@ -44,7 +34,6 @@ const ViewCart = ({ navigation }) => {
     }));
 
     setIsLoading(true);
-    clearSelectedItems();
     try {
       setModalVisible(false);
       const request = await fetch(
