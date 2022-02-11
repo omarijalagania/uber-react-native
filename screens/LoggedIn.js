@@ -18,9 +18,9 @@ const LoggedIn = ({ token }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#0d47a1",
+        paddingTop: 100,
       }}
     >
       <Text
