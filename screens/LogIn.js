@@ -19,7 +19,9 @@ const LogIn = ({ navigation }) => {
   }
 
   const logInHandler = async () => {
-    setIsLoading(true);
+    {
+      email && password && setIsLoading(true);
+    }
     try {
       if (email && password) {
         const response = await fetch(
@@ -38,10 +40,12 @@ const LogIn = ({ navigation }) => {
         const responseData = await response.json();
         dispatch({ type: "SET_TOKEN", payload: responseData.token });
         setIsLoading(false);
+        setEmail("");
+        setPassword("");
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      alert(error);
     }
   };
 
