@@ -20,8 +20,12 @@ const BottomTabs = ({ navigation }) => {
         <View onTouchStart={() => navigation.navigate("Home")}>
           <Icons name="home" text="Home" />
         </View>
-        <Icons name="search" text="Search" />
-        <View onTouchStart={() => navigation.navigate("Favorites")}>
+
+        <View
+          onTouchStart={() =>
+            navigation.navigate(token ? "Favorites" : "Account")
+          }
+        >
           <Icons name="star" text="Favorites" />
         </View>
         <View

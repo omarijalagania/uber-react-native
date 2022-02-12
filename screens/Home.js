@@ -7,11 +7,25 @@ import RestaurantItem from "../components/home/Restaurant/RestaurantItem";
 import Searchbar from "../components/home/Search/Searchbar";
 import BottomTabs from "../components/home/BottomTabs/BottomTabs";
 import Loader from "../components/home/Loader/Loader";
+
+import { useSelector } from "react-redux";
+import jwtDecode from "jwt-decode";
+
 const Home = ({ navigation }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [city, setCity] = useState("georgia");
   const [activeTab, setActiveTab] = useState("Delivery");
   const [isLoading, setIsLoading] = useState(false);
+  const [userId, setUserId] = useState("");
+
+  const token = useSelector((state) => state.tokenReducer.token);
+
+  useEffect(() => {
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserId(decoded._id);
+    }
+  }, [token]);
   //Get restaurantsData from API
   useEffect(() => {
     const getRestaurants = async () => {
@@ -62,6 +76,7 @@ const Home = ({ navigation }) => {
         >
           <Categories />
           <RestaurantItem
+            userId={userId}
             navigation={navigation}
             restaurantsData={restaurants}
           />

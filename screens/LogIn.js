@@ -13,11 +13,6 @@ const LogIn = ({ navigation }) => {
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
-  if (token) {
-    const decoded = jwtDecode(token);
-    console.log(decoded._id);
-  }
-
   const logInHandler = async () => {
     {
       email && password && setIsLoading(true);
