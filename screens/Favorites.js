@@ -56,7 +56,12 @@ const Favorites = () => {
         </Text>
 
         <ScrollView style={{ marginHorizontal: 16 }}>
-          <MenuItem foods={favoritesRes.items} hideCheckbox removeBtn={true} />
+          <MenuItem
+            foods={favoritesRes.items}
+            hideCheckbox
+            userId={userId}
+            removeBtn={true}
+          />
         </ScrollView>
       </SafeAreaView>
     </View>
