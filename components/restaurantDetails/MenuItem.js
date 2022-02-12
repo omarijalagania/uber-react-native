@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../home/Loader/Loader";
 
 const MenuItem = ({ restaurauntName, foods, hideCheckbox, marginLeft }) => {
   const dispatch = useDispatch();
@@ -30,11 +31,7 @@ const MenuItem = ({ restaurauntName, foods, hideCheckbox, marginLeft }) => {
   };
 
   if (!foods) {
-    return (
-      <>
-        <Text>Loading...</Text>
-      </>
-    );
+    return <Loader />;
   }
 
   return (
