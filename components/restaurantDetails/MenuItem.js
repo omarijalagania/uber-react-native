@@ -10,12 +10,11 @@ const MenuItem = ({
   restaurauntName,
   foods,
   hideCheckbox,
+  removeFavorites,
   marginLeft,
   removeBtn,
-  userId,
 }) => {
   const dispatch = useDispatch();
-  const [responseApi, setResponseApi] = useState();
 
   //item select function
   const selectItem = (item, checkboxValue) => {
@@ -40,32 +39,9 @@ const MenuItem = ({
     );
   };
 
-  //Remove Favorites
-
-  const removeFavorites = async (favId) => {
-    try {
-      const request = await fetch(
-        `https://restapi-mongo.onrender.com/api/user/favorites/${userId}/${favId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const responseData = await request.json();
-
-      setResponseApi(responseData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   if (!foods) {
     return <Loader />;
   }
-
-  console.log(responseApi);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

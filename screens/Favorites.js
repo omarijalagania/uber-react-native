@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 
 const Favorites = () => {
   const [favoritesRes, setFavoritesRes] = useState([]);
+  const [responseApi, setResponseApi] = useState();
   const [userId, setUserId] = useState("");
   const token = useSelector((state) => state.tokenReducer.token);
 
@@ -17,6 +18,8 @@ const Favorites = () => {
       setUserId(decoded._id);
     }
   }, [token]);
+
+  //get favorites
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -31,7 +34,26 @@ const Favorites = () => {
       }
     };
     getFavorites();
-  }, [userId]);
+  }, [userId, favoritesRes]);
+
+  const removeFavorites = async (favId) => {
+    try {
+      const request = await fetch(
+        `https://restapi-mongo.onrender.com/api/user/favorites/${userId}/${favId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await request.json();
+
+      setResponseApi(responseData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={{ backgroundColor: "#0d47a1", flex: 1 }}>
@@ -61,6 +83,7 @@ const Favorites = () => {
             hideCheckbox
             userId={userId}
             removeBtn={true}
+            removeFavorites={removeFavorites}
           />
         </ScrollView>
       </SafeAreaView>

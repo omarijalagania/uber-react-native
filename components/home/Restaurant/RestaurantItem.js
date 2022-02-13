@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const RestaurantItem = ({ restaurantsData, navigation, userId }) => {
   const [isLoading, setIsLoading] = useState(true);
