@@ -22,18 +22,22 @@ const Favorites = () => {
   //get favorites
 
   useEffect(() => {
+    let isSubscribed = true;
     const getFavorites = async () => {
       try {
         const response = await fetch(
           `https://restapi-mongo.onrender.com/api/user/favorites/${userId}`
         );
         const responseJson = await response.json();
-        setFavoritesRes(responseJson);
+        setFavoritesRes(isSubscribed ? responseJson : null);
       } catch (error) {
-        console.log(error);
+        if (isSubscribed) {
+          console.log(error);
+        }
       }
     };
     getFavorites();
+    return () => (isSubscribed = false);
   }, [userId, favoritesRes]);
 
   const removeFavorites = async (favId) => {
